@@ -1,2 +1,2 @@
-FROM mirrorgooglecontainers/kubernetes-dashboard-amd64
+FROM mirrorgooglecontainers/kubernetes-dashboard-amd64:v2.0.3
 MAINTAINER 649903137@qq.com
