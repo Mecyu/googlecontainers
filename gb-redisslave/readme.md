@@ -1,3 +1,3 @@
 # image for gcr.io/google_samples/gb-redisslave:v3
-# usege
+## usege
 docker pull mecyu/gb-redisslave:v3
