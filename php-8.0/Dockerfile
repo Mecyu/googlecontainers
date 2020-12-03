@@ -10,7 +10,7 @@ RUN apt-get update \
     && ./configure --enable-fpm --with-mysqli --with-pdo-mysql --enable-mbstring --enable-gd --with-curl \
     && make && make install \
     && mkdir /app && echo "<?php \n echo phpinfo();" > /app/index.php \
-    && cp /app.conf /etc/nginx/conf.d/ && cp /run.sh /opt/php/
+    && cp /app.conf /etc/nginx/conf.d/ && cp /run.sh /opt/php/ \
     && chown +x /opt/php/run.sh
 
 WORKDIR /app
