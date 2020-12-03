@@ -10,29 +10,7 @@ RUN apt-get update \
     && ./configure --enable-fpm --with-mysqli --with-pdo-mysql --enable-mbstring --enable-gd --with-curl \
     && make && make install \
     && mkdir /app && echo "<?php \n echo phpinfo();" > /app/index.php \
-    && cat <<EOF >> /etc/nginx/conf.d/app.conf
-       server {
-          listen 8080;
-          server_name localhost;
-	  location / {
- 	     root   /app;
-   	      index  index.php index.html index.htm;
-	  }
-	  location ~* \.php$ {
-    	      fastcgi_index   index.php;
-              fastcgi_pass    127.0.0.1:9000;
-    	      include         fastcgi_params;
-    	      fastcgi_param   SCRIPT_FILENAME    $document_root$fastcgi_script_name;
-    	      fastcgi_param   SCRIPT_NAME        $fastcgi_script_name;
-	  }
-       }
-       EOF \
-    && cat <<EOF >> /opt/php/run.sh
-       echo "nginx starting ....\n"
-       service start nginx
-       echo "php-fpm starting ....\n"
-       /usr/local/bin/php-fpm
-       EOF \
+    && cp /app.conf /etc/nginx/conf.d/ && cp /run.sh /opt/php/
     && chown +x /opt/php/run.sh
 
 WORKDIR /app
