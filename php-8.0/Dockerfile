@@ -16,7 +16,7 @@ RUN apt-get update \
     && mkdir /app && echo "<?php \n echo phpinfo();" > /app/index.php \
     && cd /etc/nginx/conf.d/ && wget https://github.com/Mecyu/googlecontainers/blob/php8.0/app.conf \
     && cd /opt/php/ && wget https://github.com/Mecyu/googlecontainers/blob/php8.0/run.sh \
-    && chown +x /opt/php/run.sh
+    && chmod +x /opt/php/run.sh
 
 WORKDIR /app
 CMD /opt/php/run.sh
