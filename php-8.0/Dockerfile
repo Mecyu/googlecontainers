@@ -14,7 +14,8 @@ RUN apt-get update \
     && cp php.ini-development /usr/local/php/php.ini \
     && echo "cgi.fix_pathinfo=0" > /usr/local/php/php.ini \
     && mkdir /app && echo "<?php \n echo phpinfo();" > /app/index.php \
-    && cp /app.conf /etc/nginx/conf.d/ && cp /run.sh /opt/php/ \
+    && cd /etc/nginx/conf.d/ && wget https://github.com/Mecyu/googlecontainers/blob/php8.0/app.conf \
+    && cp /opt/php/ && wget https://github.com/Mecyu/googlecontainers/blob/php8.0/run.sh \
     && chown +x /opt/php/run.sh
 
 WORKDIR /app
